@@ -1,0 +1,57 @@
+<p-dialog header="false" showHeader="false"  closeIcon="false" [visible]="visible()" (visibleChange)="visibleChange.emit($event)"
+  [breakpoints]="{
+    '1199px': '75vw',
+    '767px': '90vw',
+    '575px': '95vw'
+  }"
+[modal]="true" [style]="{ width: '50%' , height : '50vh' }">
+  <div class="modal-container">
+    <form [formGroup]="formdata">
+    <div class="form-grid">
+    <label>ชื่อ - นามสกุล *</label>
+    <div class="input-group">
+      <input pInputText placeholder="ชื่อ" formControlName="name"  />
+      <input pInputText placeholder="นามสกุล" formControlName="lastName"   />
+    </div>
+
+    <label>วันเกิด *</label>
+    <div>
+      <p-datepicker [showIcon]="true" (onSelect)="onbrithdateChange($event)" placeholder="dd/mm/yyyy" [maxDate]="maxDate" formControlName="birthdate"  dateFormat="dd/mm/yy"/>
+    </div>
+
+    <label>อายุ *</label>
+    <div>
+     @if (!formdata.getRawValue()["birthdate"]) {
+    <span>ยังไม่มีการเลือกวันเกิด</span>
+    } @else {
+      <span>{{ formdata.getRawValue()["age"] }} ปี</span>
+    }
+    </div>
+
+    <label>ที่อยู่ *</label>
+    <div class="textarea-group">
+      <textarea rows="3" maxlength="500" formControlName="address"  ></textarea>
+    </div>
+
+  </div>
+
+</form>
+  </div>
+  @if (!isViewMode){
+  <div class="footer">
+        <span>* กรุณากรอกข้อมูลให้ครบ</span>
+      </div>
+  }
+
+
+    <ng-template #footer>
+         @if (!isViewMode) {<p-button label="ยืนยัน" severity="success" (onClick)="onSubmit()" />}
+    @if (!isViewMode) {<p-button label="ยกเลิก" severity="danger" (onClick)="onClose()" />}
+    @else {
+      <p-button label="ปิด" severity="danger" (onClick)="onClose()" />
+    }
+
+  </ng-template>
+
+
+</p-dialog>

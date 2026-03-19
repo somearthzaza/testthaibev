@@ -1,0 +1,28 @@
+
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+}
+
+.button-add-container {
+
+  display: flex;
+  justify-content: end;
+  margin-bottom: 10px;
+}
+ ::ng-deep.button-add-prop {
+  background: rgb(62, 62, 223) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 0.5rem 1.5rem !important;
+}
+
+
+.custom-table th {
+  background: #3b82f6 !important;
+  color: #ffffff !important;
+}
+
